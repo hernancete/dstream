@@ -9,6 +9,8 @@
   "author": "hernancete",
   "license": "ISC",
   "dependencies": {
-    "nbased": "^1.1.0"
+    "nbased": "^1.1.0",
+    "serverless-iam-roles-per-function": "^2.0.2",
+    "uuid": "^8.3.1"
   }
 }

@@ -1,8 +1,8 @@
 Resources:
-  TodoTable:
+  TodosTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:service}-${self:provider.stage}-todoTable
+      TableName: ${file(resource/index.json):todo.todosTable}
       AttributeDefinitions:
         - AttributeName: todo_id
           AttributeType: S
