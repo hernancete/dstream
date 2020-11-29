@@ -1,0 +1,6 @@
+{
+  "todo": {
+    "todoTable": "${self:custom.stackPrefix}-todoTable",
+    "addTodo": "${self:custom.stackPrefix}-addTodo"
+  }
+}

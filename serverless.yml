@@ -1,0 +1,36 @@
+service: dstream
+
+# plugins:
+#   - serverless-iam-roles-per-function
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  environment:
+    NODE_ENV: ${self:provider.stage}
+    LOG_LEVEL: INFO
+
+custom:
+  stackPrefix: '${self:service}-${self:provider.stage}'
+
+resources:
+  - ${file(resource/tables.yml)}
+
+functions:
+  AddTodo:
+    handler: src/handler/addTodo.handler
+    name: ${file(resource/index.json):todo.addTodo}
+    # iamRoleStatementsName: ${self:service}-${self:provider.stage}-LookAtThisLambdaRole
+    # iamRoleStatements:
+    #   - Effect: Allow
+    #     Action:
+    #       - sqs:SendMessage
+    #     Resource:
+    #       - !GetAtt ColaQueue.Arn
+    events:
+      - http:
+          path: todo
+          method: post
+          cors: true

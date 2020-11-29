@@ -1,0 +1,14 @@
+Resources:
+  TodoTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:service}-${self:provider.stage}-todoTable
+      AttributeDefinitions:
+        - AttributeName: todo_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: todo_id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
