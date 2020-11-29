@@ -1,0 +1,14 @@
+{
+  "name": "dstream",
+  "version": "1.0.0",
+  "description": "Support for dynamodb streams as input",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hernancete",
+  "license": "ISC",
+  "dependencies": {
+    "nbased": "^1.1.0"
+  }
+}
