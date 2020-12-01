@@ -1,6 +1,8 @@
 {
   "todo": {
     "todosTable": "${self:custom.stackPrefix}-Todos",
-    "addTodo": "${self:custom.stackPrefix}-AddTodo"
+    "addTodo": "${self:custom.stackPrefix}-AddTodo",
+    "todoListener": "${self:custom.stackPrefix}-TodoListener",
+    "todoCompleted": "${self:custom.stackPrefix}-TodoCompleted"
   }
 }

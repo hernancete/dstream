@@ -1,0 +1,5 @@
+Resources:
+  TodoCompleted:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ${file(resource/index.json):todo.todoCompleted}

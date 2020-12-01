@@ -17,22 +17,7 @@ custom:
 
 resources:
   - ${file(resource/tables.yml)}
+  - ${file(resource/queues.yml)}
 
 functions:
-  AddTodo:
-    handler: src/handler/addTodo.handler
-    name: ${file(resource/index.json):todo.addTodo}
-    environment:
-      TODOS_TABLE: ${file(resource/index.json):todo.todosTable}
-    iamRoleStatementsName: ${file(resource/index.json):todo.addTodo}
-    iamRoleStatements:
-      - Effect: Allow
-        Action:
-          - dynamodb:PutItem
-        Resource:
-          - !GetAtt TodosTable.Arn
-    events:
-      - http:
-          path: todo
-          method: post
-          cors: true
+  - ${file(src/todo/index.yml)}

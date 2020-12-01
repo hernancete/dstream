@@ -1,0 +1,42 @@
+AddTodo:
+  handler: src/handler/addTodo.handler
+  name: ${file(resource/index.json):todo.addTodo}
+  environment:
+    TODOS_TABLE: ${file(resource/index.json):todo.todosTable}
+  iamRoleStatementsName: ${file(resource/index.json):todo.addTodo}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - !GetAtt TodosTable.Arn
+  events:
+    - http:
+        path: todo
+        method: post
+        cors: true
+
+TodoListener:
+  handler: src/handler/todoListener.handler
+  name: ${file(resource/index.json):todo.todoListener}
+  environment:
+    TODO_COMPLETED_QUEUE: !Ref TodoCompleted
+  iamRoleStatementsName: ${file(resource/index.json):todo.todoListener}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeStream
+        - dynamodb:GetRecords
+        - dynamodb:ListStreams
+      Resource:
+        - !GetAtt TodosTable.Arn
+    - Effect: Allow
+      Action:
+        - sqs:sendMessage
+      Resource:
+        - !GetAtt TodoCompleted.Arn
+  events:
+    - stream:
+        type: dynamodb
+        arn:
+          !GetAtt TodosTable.StreamArn
