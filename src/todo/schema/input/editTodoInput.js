@@ -1,21 +1,21 @@
 const { InputValidation } = require('nbased/schema/inputValidation');
 
-class AddTodoInput extends InputValidation {
+class EditTodoInput extends InputValidation {
   constructor(payload, meta) {
     super({
-      type: 'API.ADD_TODO',
+      type: 'API.EDIT_TODO',
       specversion: 'v1.0.0',
       source: meta.source,
       payload: payload,
       schema: {
         strict: false,
         todo_id: String,
-        name: String,
+        name: { type: String, required: false },
         description: { type: String, required: false },
-        done: Boolean,
+        done: { type: Boolean, required: false },
       },
     });
   }
 }
 
-module.exports = { AddTodoInput };
+module.exports = { EditTodoInput };

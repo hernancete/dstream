@@ -8,11 +8,11 @@ async function addTodoDomain(commandPayload, commandMeta) {
     done: false,
     ...commandPayload,
   };
-  new AddTodoInput(todo, commandMeta);
+  const todoToAdd = new AddTodoInput(todo, commandMeta).get();
 
-  await storeTodo(todo);
+  await storeTodo(todoToAdd);
 
-  return { body: todo };
+  return { body: todoToAdd };
 }
 
 module.exports = { addTodoDomain };

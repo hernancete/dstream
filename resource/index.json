@@ -2,6 +2,7 @@
   "todo": {
     "todosTable": "${self:custom.stackPrefix}-Todos",
     "addTodo": "${self:custom.stackPrefix}-AddTodo",
+    "editTodo": "${self:custom.stackPrefix}-EditTodo",
     "todoListener": "${self:custom.stackPrefix}-TodoListener",
     "todoCompleted": "${self:custom.stackPrefix}-TodoCompleted"
   }
